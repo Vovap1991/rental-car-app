@@ -1,4 +1,5 @@
 import { ContactPhone } from 'components/ContactPhone/ContactPhone';
+import { Logo } from 'components/Logo/Logo';
 import {
   HeaderContainer,
   HeaderNavList,
@@ -8,6 +9,7 @@ import {
 export const Header = () => {
   return (
     <HeaderContainer>
+      <Logo />
       <nav>
         <HeaderNavList>
           <li>
