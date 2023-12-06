@@ -8,7 +8,6 @@ export const App = () => {
   return (
     <div>
       <Header />
-      <hr />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
