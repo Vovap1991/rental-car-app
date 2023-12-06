@@ -1,12 +1,25 @@
-import { Link } from 'react-router-dom';
+import {
+  HeroContainer,
+  HeroTextContainer,
+  HeroTitle,
+  HeroParagraphPartner,
+  HeroParagraphClick,
+  HeroButton,
+} from './Hero.styled';
 
 export const Hero = () => {
   return (
-    <div>
-      <h1>Welcome to the Rental Car Service</h1>
-      <p>Your loyal partner to find a car for renting!</p>
-      <p>Click the button below and find best car for you</p>
-      <Link to="/catalog">Start</Link>
-    </div>
+    <HeroContainer>
+      <HeroTextContainer>
+        <HeroTitle>Welcome to the Rental Car Service</HeroTitle>
+        <HeroParagraphPartner>
+          Your loyal partner for renting cars!
+        </HeroParagraphPartner>
+        <HeroParagraphClick>
+          Click the button below and find the best car for you
+        </HeroParagraphClick>
+        <HeroButton to="/catalog"> Find Car</HeroButton>
+      </HeroTextContainer>
+    </HeroContainer>
   );
 };
