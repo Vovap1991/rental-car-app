@@ -8,7 +8,7 @@ export const CarMakeFilterWrapper = styled.div`
 
 export const CarMakeFilterLabel = styled.label`
   color: #8a8a89;
-  font-family: 'Manrope';
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -16,8 +16,9 @@ export const CarMakeFilterLabel = styled.label`
 `;
 
 export const CarMakeFilterSelect = styled.select`
+  border: none;
   display: flex;
-  font-family: 'Manrope';
+  font-family: Manrope;
   padding: 14px 89px 14px 18px;
   justify-content: center;
   align-items: center;
@@ -26,7 +27,7 @@ export const CarMakeFilterSelect = styled.select`
   background: #f7f7fb;
   font-size: 18px;
   color: #121417;
-  font-family: 'Manrope';
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   line-height: 1.1;
@@ -34,7 +35,7 @@ export const CarMakeFilterSelect = styled.select`
 
 export const CarMakeFilterBaseOption = styled.option`
   color: #121417;
-  font-family: 'Manrope';
+  font-family: Manrope;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -43,7 +44,7 @@ export const CarMakeFilterBaseOption = styled.option`
 
 export const CarMakeFilterOption = styled.option`
   color: rgba(18, 20, 23, 0.2);
-  font-family: 'Manrope';
+  font-family: Manrope;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

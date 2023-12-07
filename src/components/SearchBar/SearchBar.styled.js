@@ -5,6 +5,6 @@ export const SearchBarWrapper = styled.div`
   flex-direction: row;
   gap: 18px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 20px;
 `;
