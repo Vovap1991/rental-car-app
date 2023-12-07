@@ -6,4 +6,5 @@ export const SearchBarWrapper = styled.div`
   gap: 18px;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 `;
