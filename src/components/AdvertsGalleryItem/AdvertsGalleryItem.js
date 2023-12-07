@@ -1,3 +1,4 @@
+import { LearnMoreButton } from 'components/LearnMoreButton/LearnMoreButton';
 import { fetchAdverts } from 'components/services/services';
 import { useState, useEffect } from 'react';
 import {
@@ -6,7 +7,10 @@ import {
   AdvertsCard,
   AdvertsImg,
   AdvertsFirstInfoBclock,
-  AdvertsMakeName,
+  AdvertsFirstInfoTextContent,
+  AdvertsModelName,
+  AdvertsSecondInfoBclock,
+  AdvertsSecondInfoTextContent,
 } from './AdvertsGalleryItem.styled';
 
 export const AdvertsGalleryItem = () => {
@@ -27,22 +31,25 @@ export const AdvertsGalleryItem = () => {
           <AdvertsCard key={advert.id}>
             <AdvertsImg src={advert.img} alt={advert.make} />
             <AdvertsFirstInfoBclock>
-              <AdvertsMakeName>{advert.make}</AdvertsMakeName>
-              <span>{advert.model}</span>,<span>{advert.year}</span>
+              <AdvertsFirstInfoTextContent>
+                {advert.make}{' '}
+                <AdvertsModelName>{advert.model}</AdvertsModelName>,{' '}
+                {advert.year}
+              </AdvertsFirstInfoTextContent>
               <span>{advert.rentalPrice}</span>
             </AdvertsFirstInfoBclock>
-            <div>
-              <p>
+            <AdvertsSecondInfoBclock>
+              <AdvertsSecondInfoTextContent>
                 {advert.address.split(',').slice(-2).join(' | ')} |{' '}
                 {advert.rentalCompany}
-              </p>
-              <p>
+              </AdvertsSecondInfoTextContent>
+              <AdvertsSecondInfoTextContent>
                 {advert.type} | {advert.model} | {advert.id} |{' '}
                 {advert.functionalities[0].split(' ').slice(0, 1).join(' ')}
                 {advert.functionalities[0].split(' ').length > 1 ? '...' : ''}
-              </p>
-            </div>
-            <button>Learn more</button>
+              </AdvertsSecondInfoTextContent>
+            </AdvertsSecondInfoBclock>
+            <LearnMoreButton />
           </AdvertsCard>
         ))}
       </AdvertsList>
