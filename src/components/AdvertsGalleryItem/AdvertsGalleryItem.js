@@ -1,5 +1,5 @@
 import { LearnMoreButton } from 'components/LearnMoreButton/LearnMoreButton';
-import { fetchAdverts } from 'components/services/services';
+import { defaultImg, fetchAdverts } from 'components/services/services';
 import { useState, useEffect } from 'react';
 import {
   AdvertsContainer,
@@ -29,7 +29,7 @@ export const AdvertsGalleryItem = () => {
       <AdvertsList>
         {adverts.map(advert => (
           <AdvertsCard key={advert.id}>
-            <AdvertsImg src={advert.img} alt={advert.make} />
+            <AdvertsImg src={advert.img || defaultImg} alt={advert.make} />
             <AdvertsFirstInfoBclock>
               <AdvertsFirstInfoTextContent>
                 {advert.make}{' '}
