@@ -32,6 +32,15 @@ export const CarMakeFilterSelect = styled.select`
   line-height: 1.1;
 `;
 
+export const CarMakeFilterBaseOption = styled.option`
+  color: #121417;
+  font-family: 'Manrope';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.1;
+`;
+
 export const CarMakeFilterOption = styled.option`
   color: rgba(18, 20, 23, 0.2);
   font-family: 'Manrope';
