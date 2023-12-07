@@ -10,12 +10,14 @@ export const AdvertsList = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 29px;
+  grid-row-gap: 50px;
+  grid-column-gap: 29px;
   padding: 0;
   margin-top: 40px;
 `;
 
 export const AdvertsCard = styled.li`
+  position: relative;
   width: 274px;
   height: 426px;
 `;
@@ -76,4 +78,16 @@ export const AdvertsSecondInfoTextContent = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
+`;
+
+export const FavoriteButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+  left: 230px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 18px;
+  height: 18px;
 `;

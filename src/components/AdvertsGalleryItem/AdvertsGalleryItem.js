@@ -11,7 +11,10 @@ import {
   AdvertsModelName,
   AdvertsSecondInfoBclock,
   AdvertsSecondInfoTextContent,
+  FavoriteButton,
 } from './AdvertsGalleryItem.styled';
+
+import normalHeart from '../../normal.svg';
 
 export const AdvertsGalleryItem = () => {
   const [adverts, setAdverts] = useState([]);
@@ -29,6 +32,10 @@ export const AdvertsGalleryItem = () => {
       <AdvertsList>
         {adverts.map(advert => (
           <AdvertsCard key={advert.id}>
+            <FavoriteButton>
+              <img src={normalHeart} alt="" />
+            </FavoriteButton>
+
             <AdvertsImg src={advert.img || defaultImg} alt={advert.make} />
             <AdvertsFirstInfoBclock>
               <AdvertsFirstInfoTextContent>
