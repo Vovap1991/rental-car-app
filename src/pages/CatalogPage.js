@@ -1,5 +1,11 @@
+import { SearchBar } from 'components/SearchBar/SearchBar';
+
 const CatalogPage = () => {
-  return <div>Catalog Page</div>;
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 };
 
 export default CatalogPage;
