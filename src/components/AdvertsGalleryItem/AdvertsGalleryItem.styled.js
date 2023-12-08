@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const AdvertsContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -14,6 +15,7 @@ export const AdvertsList = styled.ul`
   grid-column-gap: 29px;
   padding: 0;
   margin-top: 40px;
+  margin-bottom: 100px;
 `;
 
 export const AdvertsCard = styled.li`
@@ -90,4 +92,45 @@ export const FavoriteButton = styled.button`
   outline: none;
   width: 18px;
   height: 18px;
+`;
+
+export const LearnButton = styled.button`
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  width: 274px;
+  height: 44px;
+  padding: 12px 99px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #3470ff;
+  color: #fff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: background-color 250ms linear;
+
+  &:hover {
+    background-color: #0b44cd;
+  }
+`;
+
+export const LoadMoreButton = styled.button`
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin-bottom: 150px;
+  background-color: transparent;
+  color: #3470ff;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration-line: underline;
 `;

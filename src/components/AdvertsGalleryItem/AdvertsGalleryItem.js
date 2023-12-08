@@ -1,4 +1,3 @@
-import { LearnMoreButton } from 'components/LearnMoreButton/LearnMoreButton';
 import { defaultImg } from 'components/services/services';
 import { useState, useEffect } from 'react';
 import {
@@ -12,25 +11,60 @@ import {
   AdvertsSecondInfoBclock,
   AdvertsSecondInfoTextContent,
   FavoriteButton,
+  LearnButton,
+  LoadMoreButton,
 } from './AdvertsGalleryItem.styled';
 
 import normalHeart from '../../normal.svg';
 import { fetchAdverts } from 'api';
 
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    width: '540px',
+    height: '750px',
+    borderRadius: '24px',
+    background: '#FFF',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  overlay: {
+    background: 'rgba(18, 20, 23, 0.50)',
+  },
+};
+
+Modal.setAppElement('#root');
+
 export const AdvertsGalleryItem = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
-  // const [loading, setloading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
     const getAdverts = async () => {
-      const adverts = await fetchAdverts(page, limit);
-      setAdverts(adverts);
-      console.log(adverts);
+      try {
+        const adverts = await fetchAdverts(page, limit);
+
+        setAdverts(adverts);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getAdverts();
   }, []);
+
+  const closeModal = () => setModalIsOpen(false);
+
+  const loadMoreAdverts = () => {
+    setPage(page + 1);
+    console.log(page);
+  };
 
   return (
     <AdvertsContainer>
@@ -61,10 +95,24 @@ export const AdvertsGalleryItem = () => {
                 {advert.functionalities[0].split(' ').length > 1 ? '...' : ''}
               </AdvertsSecondInfoTextContent>
             </AdvertsSecondInfoBclock>
-            <LearnMoreButton />
+            <LearnButton onClick={() => setModalIsOpen(true)}>
+              Learn more
+            </LearnButton>
+
+            <Modal
+              isOpen={modalIsOpen}
+              style={customStyles}
+              onRequestClose={closeModal}
+              contentLabel="Example Modal"
+            >
+              <h2>fdbsdfg</h2>
+
+              <button onClick={closeModal}>закрыть</button>
+            </Modal>
           </AdvertsCard>
         ))}
       </AdvertsList>
+      <LoadMoreButton onClick={loadMoreAdverts}>Load more</LoadMoreButton>
     </AdvertsContainer>
   );
 };

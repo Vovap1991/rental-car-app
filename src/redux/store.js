@@ -1,5 +1,8 @@
-const { configureStore } = require('@reduxjs/toolkit');
+import { configureStore } from '@reduxjs/toolkit';
+import { slice } from './carsSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    cars: slice.reducer,
+  },
 });
