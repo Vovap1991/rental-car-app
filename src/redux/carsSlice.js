@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import operations from './operations';
+import { fetchCars } from './operations';
+
+const handleFetchCarsFulfilled = (state, action) => {
+  state.cars = action.payload;
+};
 
 const initialState = {
   cars: [],
@@ -19,6 +23,9 @@ export const slice = createSlice({
   name: 'cars',
   initialState,
   reducers: {
+    setCars(state, action) {
+      state.cars = action.payload;
+    },
     setFilter(state, action) {
       state.filter = action.payload;
     },
@@ -46,18 +53,16 @@ export const slice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(operations.fetchCars.fulfilled, (state, action) => {
-      state.cars = action.payload;
-    });
+    builder.addCase(fetchCars.fulfilled, handleFetchCarsFulfilled);
   },
 });
 
 export const {
+  setCars,
   setFilter,
   setFilteredCars,
   clearFilter,
   addFavorite,
-  setActivePage,
   setModal,
   setModalCar,
 } = slice.actions;

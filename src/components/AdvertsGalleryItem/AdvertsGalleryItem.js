@@ -16,9 +16,11 @@ import {
 } from './AdvertsGalleryItem.styled';
 
 import normalHeart from '../../normal.svg';
-import { fetchAdverts } from 'api';
 
 import Modal from 'react-modal';
+import { fetchCars } from '../../redux/operations';
+import { selectCars } from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 
 const customStyles = {
   content: {
@@ -44,55 +46,49 @@ export const AdvertsGalleryItem = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [adverts, setAdverts] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getAdverts = async () => {
-      try {
-        const adverts = await fetchAdverts(page, limit);
+    dispatch(fetchCars());
+  }, [dispatch]);
 
-        setAdverts(adverts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAdverts();
-  }, []);
+  const cars = useSelector(selectCars);
+  console.log(cars);
 
   const closeModal = () => setModalIsOpen(false);
 
-  const loadMoreAdverts = () => {
-    setPage(page + 1);
-    console.log(page);
-  };
+  // const loadMoreAdverts = () => {
+  //   setPage(page + 1);
+  //   console.log(page);
+  // };
 
   return (
     <AdvertsContainer>
       <AdvertsList>
-        {adverts.map(advert => (
-          <AdvertsCard key={advert.id}>
+        {cars.map(car => (
+          <AdvertsCard key={car.id}>
             <FavoriteButton>
               <img src={normalHeart} alt="" />
             </FavoriteButton>
 
-            <AdvertsImg src={advert.img || defaultImg} alt={advert.make} />
+            <AdvertsImg src={car.img || defaultImg} alt={car.make} />
             <AdvertsFirstInfoBclock>
               <AdvertsFirstInfoTextContent>
-                {advert.make}{' '}
-                <AdvertsModelName>{advert.model}</AdvertsModelName>,{' '}
-                {advert.year}
+                {car.make} <AdvertsModelName>{car.model}</AdvertsModelName>,{' '}
+                {car.year}
               </AdvertsFirstInfoTextContent>
-              <span>{advert.rentalPrice}</span>
+              <span>{car.rentalPrice}</span>
             </AdvertsFirstInfoBclock>
             <AdvertsSecondInfoBclock>
               <AdvertsSecondInfoTextContent>
-                {advert.address.split(',').slice(-2).join(' | ')} |{' '}
-                {advert.rentalCompany}
+                {car.address.split(',').slice(-2).join(' | ')} |{' '}
+                {car.rentalCompany}
               </AdvertsSecondInfoTextContent>
               <AdvertsSecondInfoTextContent>
-                {advert.type} | {advert.model} | {advert.id} |{' '}
-                {advert.functionalities[0].split(' ').slice(0, 1).join(' ')}
-                {advert.functionalities[0].split(' ').length > 1 ? '...' : ''}
+                {car.type} | {car.model} | {car.id} |{' '}
+                {car.functionalities[0].split(' ').slice(0, 1).join(' ')}
+                {car.functionalities[0].split(' ').length > 1 ? '...' : ''}
               </AdvertsSecondInfoTextContent>
             </AdvertsSecondInfoBclock>
             <LearnButton onClick={() => setModalIsOpen(true)}>
@@ -112,7 +108,7 @@ export const AdvertsGalleryItem = () => {
           </AdvertsCard>
         ))}
       </AdvertsList>
-      <LoadMoreButton onClick={loadMoreAdverts}>Load more</LoadMoreButton>
+      <LoadMoreButton>Load more</LoadMoreButton>
     </AdvertsContainer>
   );
 };
