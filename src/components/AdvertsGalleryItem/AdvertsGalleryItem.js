@@ -1,5 +1,5 @@
 import { LearnMoreButton } from 'components/LearnMoreButton/LearnMoreButton';
-import { defaultImg, fetchAdverts } from 'components/services/services';
+import { defaultImg } from 'components/services/services';
 import { useState, useEffect } from 'react';
 import {
   AdvertsContainer,
@@ -15,14 +15,19 @@ import {
 } from './AdvertsGalleryItem.styled';
 
 import normalHeart from '../../normal.svg';
+import { fetchAdverts } from 'api';
 
 export const AdvertsGalleryItem = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(12);
+  // const [loading, setloading] = useState(false);
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
     const getAdverts = async () => {
-      const adverts = await fetchAdverts();
+      const adverts = await fetchAdverts(page, limit);
       setAdverts(adverts);
+      console.log(adverts);
     };
     getAdverts();
   }, []);
