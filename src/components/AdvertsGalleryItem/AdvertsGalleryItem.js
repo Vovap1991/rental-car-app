@@ -50,7 +50,7 @@ export const AdvertsGalleryItem = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCars());
+    dispatch(fetchCars({ page, limit }));
   }, [dispatch]);
 
   const cars = useSelector(selectCars);
