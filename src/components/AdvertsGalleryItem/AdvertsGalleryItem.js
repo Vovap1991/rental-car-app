@@ -46,22 +46,27 @@ export const AdvertsGalleryItem = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCars({ page, limit }));
-  }, [dispatch]);
+  }, [dispatch, page, limit]);
 
   const cars = useSelector(selectCars);
-  console.log(cars);
+
+  const openModal = car => {
+    setSelectedCar(car);
+    setModalIsOpen(true);
+  };
 
   const closeModal = () => setModalIsOpen(false);
 
-  // const loadMoreAdverts = () => {
-  //   setPage(page + 1);
-  //   console.log(page);
-  // };
+  const loadMoreAdverts = () => {
+    setPage(page + 1);
+    console.log(page);
+  };
 
   return (
     <AdvertsContainer>
@@ -91,24 +96,23 @@ export const AdvertsGalleryItem = () => {
                 {car.functionalities[0].split(' ').length > 1 ? '...' : ''}
               </AdvertsSecondInfoTextContent>
             </AdvertsSecondInfoBclock>
-            <LearnButton onClick={() => setModalIsOpen(true)}>
-              Learn more
-            </LearnButton>
+            <LearnButton onClick={() => openModal(car)}>Learn more</LearnButton>
 
-            <Modal
-              isOpen={modalIsOpen}
-              style={customStyles}
-              onRequestClose={closeModal}
-              contentLabel="Example Modal"
-            >
-              <h2>fdbsdfg</h2>
-
-              <button onClick={closeModal}>закрыть</button>
-            </Modal>
+            {modalIsOpen && selectedCar && (
+              <Modal
+                isOpen={modalIsOpen}
+                style={customStyles}
+                onRequestClose={closeModal}
+                contentLabel="Example Modal"
+              >
+                <h2>{selectedCar.make}</h2>
+                <button onClick={closeModal}>закрыть</button>
+              </Modal>
+            )}
           </AdvertsCard>
         ))}
       </AdvertsList>
-      <LoadMoreButton>Load more</LoadMoreButton>
+      <LoadMoreButton onClick={loadMoreAdverts}>Load more</LoadMoreButton>
     </AdvertsContainer>
   );
 };
