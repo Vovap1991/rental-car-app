@@ -27,11 +27,11 @@ export const SearchBar = () => {
         <CarPriceFilter />
         <CarMileageFilter />
         <SearchButton />
+        <ResetFiltersButton type="button" onClick={handleResetFilters}>
+          <ResetFiltersImg src={closeIcon} alt={''} />
+          Reset filters
+        </ResetFiltersButton>
       </SearchBarWrapper>
-      <ResetFiltersButton type="button" onClick={handleResetFilters}>
-        <ResetFiltersImg src={closeIcon} alt={''} />
-        Reset filters
-      </ResetFiltersButton>
     </SearchBarContainer>
   );
 };
