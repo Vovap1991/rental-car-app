@@ -76,7 +76,6 @@ export const AdvertsGalleryItem = () => {
 
   const loadMoreAdverts = () => {
     setPage(page + 1);
-    console.log(page);
   };
 
   return (

@@ -28,11 +28,7 @@ export const slice = createSlice({
     },
     setFilter(state, action) {
       state.filter = { ...state.filter, ...action.payload };
-      if (state.filter.make === 'Enter the text') {
-        state.filter.make = '';
-        state.initialCars = state.cars;
-      }
-      const filteredCars = state.cars.filter(
+      const filteredCars = state.initialCars.filter(
         car => car.make === state.filter.make
       );
       state.cars = [...filteredCars];
