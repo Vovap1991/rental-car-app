@@ -43,7 +43,7 @@ const customStyles = {
     padding: '40px',
     borderRadius: '24px',
     background: '#FFF',
-    // marginRight: '-50%',
+    marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
   },
   overlay: {

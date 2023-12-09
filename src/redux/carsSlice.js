@@ -13,10 +13,7 @@ const initialState = {
     from: '',
     to: '',
   },
-  filteredCars: [],
   favoriteCars: [],
-  isModalOn: false,
-  modalCar: '',
 };
 
 export const slice = createSlice({
@@ -24,32 +21,28 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setCars(state, action) {
-      state.cars = action.payload;
+      state.cars = [...state.cars, ...action.payload];
     },
     setFilter(state, action) {
-      state.filter = action.payload;
+      state.filter = { ...state.filter, ...action.payload };
+      const filteredCars = state.cars.filter(
+        car => car.make === state.filter.make
+      );
+      state.cars = [...filteredCars];
     },
-    setFilteredCars(state, action) {
-      state.filteredCars = [...action.payload];
-    },
-    clearFilter(state, _) {
+
+    clearFilter(state, { dispatch }) {
       state.filter = initialState.filter;
     },
     addFavorite(state, action) {
-      const favorites = [...state.favoriteCars];
+      const carId = action.payload;
+      const isFavorite = state.favoriteCars.includes(carId);
 
-      if (favorites.indexOf(action.payload) > -1) {
-        favorites.splice(favorites.indexOf(action.payload), 1);
-        state.favoriteCars = [...favorites];
+      if (isFavorite) {
+        state.favoriteCars = state.favoriteCars.filter(id => id !== carId);
       } else {
-        state.favoriteCars = [...state.favoriteCars, action.payload];
+        state.favoriteCars.push(carId);
       }
-    },
-    setModal(state, action) {
-      state.isModalOn = action.payload;
-    },
-    setModalCar(state, action) {
-      state.modalCar = action.payload;
     },
   },
   extraReducers: builder => {
@@ -57,12 +50,5 @@ export const slice = createSlice({
   },
 });
 
-export const {
-  setCars,
-  setFilter,
-  setFilteredCars,
-  clearFilter,
-  addFavorite,
-  setModal,
-  setModalCar,
-} = slice.actions;
+export const { setCars, setFilter, setFilteredCars, clearFilter, addFavorite } =
+  slice.actions;
