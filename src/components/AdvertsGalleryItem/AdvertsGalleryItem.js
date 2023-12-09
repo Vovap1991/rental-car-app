@@ -27,11 +27,13 @@ import {
 
 import normalHeart from '../../normal.svg';
 import closeIcon from '../../close-icon.svg';
+import activeHeart from '../../active-heart.svg';
 
 import Modal from 'react-modal';
 import { fetchCars } from '../../redux/operations';
-import { selectCars } from '../../redux/selectors';
+import { selectCars, selectFavoriteCars } from '../../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite } from '../../redux/carsSlice';
 
 const customStyles = {
   content: {
@@ -59,13 +61,16 @@ export const AdvertsGalleryItem = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 
+  const cars = useSelector(selectCars);
+  const favoriteCars = useSelector(selectFavoriteCars);
+
+  console.log(favoriteCars);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCars({ page, limit }));
   }, [dispatch, page, limit]);
-
-  const cars = useSelector(selectCars);
 
   const openModal = car => {
     setSelectedCar(car);
@@ -78,13 +83,21 @@ export const AdvertsGalleryItem = () => {
     setPage(page + 1);
   };
 
+  const handleFavoriteButtonClick = car => {
+    dispatch(addFavorite(car));
+  };
+
+  const isFavorite = selectedCar => {
+    return favoriteCars.some(car => car.id === selectedCar.id);
+  };
+
   return (
     <AdvertsContainer>
       <AdvertsList>
         {cars.map(car => (
           <AdvertsCard key={car.id}>
-            <FavoriteButton>
-              <img src={normalHeart} alt="" />
+            <FavoriteButton onClick={() => handleFavoriteButtonClick(car)}>
+              <img src={isFavorite(car) ? activeHeart : normalHeart} alt="" />
             </FavoriteButton>
 
             <AdvertsImg src={car.img || defaultImg} alt={car.make} />

@@ -38,13 +38,18 @@ export const slice = createSlice({
       state.cars = [...state.initialCars];
     },
     addFavorite(state, action) {
-      const carId = action.payload;
-      const isFavorite = state.favoriteCars.includes(carId);
+      const selectedCar = action.payload;
+
+      const isFavorite = state.favoriteCars.some(
+        car => car.id === selectedCar.id
+      );
 
       if (isFavorite) {
-        state.favoriteCars = state.favoriteCars.filter(id => id !== carId);
+        state.favoriteCars = state.favoriteCars.filter(
+          car => car.id !== selectedCar.id
+        );
       } else {
-        state.favoriteCars.push(carId);
+        state.favoriteCars.push(selectedCar);
       }
     },
   },
