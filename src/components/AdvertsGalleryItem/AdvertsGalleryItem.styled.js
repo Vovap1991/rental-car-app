@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const ModalContainer = styled.div`
+  position: relative;
+  max-width: 100%;
+`;
+
 export const AdvertsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,14 +38,16 @@ export const AdvertsImg = styled.img`
 `;
 
 export const AdvertsFirstInfoBclock = styled.div`
+  margin: 0;
   margin-top: 14px;
+  margin-bottom: 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const AdvertsFirstInfoTextContent = styled.p`
+export const AdvertsFirstInfoTextContent = styled.h2`
   margin: 0;
   color: #121417;
 
@@ -61,6 +68,7 @@ export const AdvertsModelName = styled.span`
 `;
 
 export const AdvertsSecondInfoBclock = styled.div`
+  margin: 0;
   margin-top: 8px;
   margin-bottom: 28px;
   display: flex;
@@ -71,7 +79,7 @@ export const AdvertsSecondInfoBclock = styled.div`
   width: 100%;
 `;
 
-export const AdvertsSecondInfoTextContent = styled.p`
+export const AdvertsSecondInfoTextContent = styled.div`
   margin: 0;
   color: rgba(18, 20, 23, 0.5);
 
@@ -133,4 +141,112 @@ export const LoadMoreButton = styled.button`
   font-weight: 500;
   line-height: 1.5;
   text-decoration-line: underline;
+`;
+
+export const ModalImg = styled.img`
+  object-fit: cover;
+  border-radius: 24px;
+  display: block;
+  width: 100%;
+  height: 314px;
+`;
+
+export const FuelAndEnginePar = styled.p`
+  margin: 0;
+`;
+
+export const CarDescription = styled.p`
+  margin: 0;
+  margin-top: 14px;
+  color: #121417;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+`;
+
+export const BlockTitle = styled.h3`
+  margin: 0;
+  color: #121417;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 24px;
+  margin-bottom: 8px;
+`;
+
+export const AccAndFuncText = styled.span`
+  color: rgba(18, 20, 23, 0.5);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 24px;
+`;
+
+export const RentalCondList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  column-gap: 8px;
+  row-gap: 8px;
+  margin-bottom: 30px;
+`;
+
+export const RentalCondListItem = styled.li`
+  display: flex;
+  padding: 7px 14px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  background: #f9f9f9;
+  color: #363535;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.24px;
+`;
+
+export const RentalButton = styled.a`
+  text-decoration: none;
+  margin: 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 12px 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: #3470ff;
+  color: #fff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4;
+
+  &:hover {
+    background: #0b44cd;
+  }
+`;
+
+export const CloseModalButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 495px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
 `;
