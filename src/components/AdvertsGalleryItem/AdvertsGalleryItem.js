@@ -198,10 +198,7 @@ export const AdvertsGalleryItem = () => {
                   <RentalCondListItem>
                     Mileage:{'\u00A0'}
                     <span style={{ color: '#3470FF', fontWeight: '600' }}>
-                      {selectedCar.mileage &&
-                        selectedCar.mileage.toString().slice(0, 1) +
-                          ',' +
-                          selectedCar.mileage.toString().slice(1)}
+                      {selectedCar.mileage}
                     </span>
                   </RentalCondListItem>
                   <RentalCondListItem>
