@@ -18,7 +18,10 @@ export const Hero = () => {
         <HeroParagraphClick>
           Click the button below and find the best car for you
         </HeroParagraphClick>
-        <HeroButton to="/catalog"> Find Car</HeroButton>
+        <HeroButton to="/catalog" aria-label="Find Car">
+          {' '}
+          Find Car
+        </HeroButton>
       </HeroTextContainer>
     </HeroContainer>
   );

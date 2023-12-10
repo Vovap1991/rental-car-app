@@ -21,12 +21,13 @@ export const CarPriceFilter = () => {
 
   return (
     <CarPriceFilterWrapper>
-      {' '}
       <CarPriceFilterLabel htmlFor="pricePerHour">
         Price/ 1 hour
       </CarPriceFilterLabel>
       <CarPriceFilterSelect id="pricePerHour" name="pricePerHour">
-        <option value="">To $</option>
+        <option key="empty" value="">
+          To $
+        </option>
         {createOptions()}
       </CarPriceFilterSelect>
     </CarPriceFilterWrapper>

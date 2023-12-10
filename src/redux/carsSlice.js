@@ -58,5 +58,4 @@ export const slice = createSlice({
   },
 });
 
-export const { setCars, setFilter, setFilteredCars, clearFilter, addFavorite } =
-  slice.actions;
+export const { setCars, setFilter, clearFilter, addFavorite } = slice.actions;

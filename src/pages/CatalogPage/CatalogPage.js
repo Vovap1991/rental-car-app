@@ -1,5 +1,5 @@
-import { AdvertsGallery } from 'components/AdvertsGallery/AdvertsGallery';
 import { SearchBar } from 'components/SearchBar/SearchBar';
+import { AdvertsGallery } from 'components/AdvertsGallery/AdvertsGallery';
 
 const CatalogPage = () => {
   return (

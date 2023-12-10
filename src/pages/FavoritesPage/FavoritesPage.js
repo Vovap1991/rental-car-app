@@ -114,7 +114,10 @@ const FavoritesPage = () => {
                     {car.functionalities[0].split(' ').length > 1 ? '...' : ''}
                   </AdvertsSecondInfoTextContent>
                 </AdvertsSecondInfoBclock>
-                <LearnButton onClick={() => openModal(car)}>
+                <LearnButton
+                  onClick={() => openModal(car)}
+                  aria-label="Learn more about the car"
+                >
                   Learn more
                 </LearnButton>
               </AdvertsCard>

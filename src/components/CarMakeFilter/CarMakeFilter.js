@@ -1,3 +1,9 @@
+import { useDispatch } from 'react-redux';
+
+import { setFilter } from '../../redux/carsSlice';
+
+import makes from '../makes.json';
+
 import {
   CarMakeFilterWrapper,
   CarMakeFilterLabel,
@@ -5,11 +11,6 @@ import {
   CarMakeFilterBaseOption,
   CarMakeFilterOption,
 } from './CarMakeFilter.styled';
-
-import makes from '../makes.json';
-
-import { useDispatch } from 'react-redux';
-import { setFilter } from '../../redux/carsSlice';
 
 export const CarMakeFilter = () => {
   const dispatch = useDispatch();
