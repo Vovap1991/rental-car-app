@@ -64,8 +64,6 @@ export const AdvertsGalleryItem = () => {
   const cars = useSelector(selectCars);
   const favoriteCars = useSelector(selectFavoriteCars);
 
-  console.log(favoriteCars);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
