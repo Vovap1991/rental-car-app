@@ -24,7 +24,7 @@ export const slice = createSlice({
   reducers: {
     setCars(state, action) {
       state.cars = [...state.cars, ...action.payload];
-      state.initialCars = [...state.cars, ...action.payload];
+      state.initialCars = [...state.initialCars, ...action.payload];
     },
     setFilter(state, action) {
       state.filter = { ...state.filter, ...action.payload };

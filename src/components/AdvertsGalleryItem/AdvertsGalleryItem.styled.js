@@ -141,6 +141,11 @@ export const LoadMoreButton = styled.button`
   font-weight: 500;
   line-height: 1.5;
   text-decoration-line: underline;
+  transition: color 250ms linear;
+
+  &:hover {
+    color: #0b44cd;
+  }
 `;
 
 export const ModalImg = styled.img`
@@ -249,4 +254,16 @@ export const CloseModalButton = styled.button`
   outline: none;
   width: 24px;
   height: 24px;
+`;
+
+export const NoMoreAdverts = styled.div`
+  margin: 0;
+  color: #121417;
+  font-family: Manrope;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 24px;
+  margin-bottom: 8px;
 `;

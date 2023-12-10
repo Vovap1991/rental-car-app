@@ -23,6 +23,7 @@ import {
   RentalButton,
   ModalContainer,
   CloseModalButton,
+  NoMoreAdverts,
 } from './AdvertsGalleryItem.styled';
 
 import normalHeart from '../../normal.svg';
@@ -227,7 +228,12 @@ export const AdvertsGalleryItem = () => {
           </RentalButton>
         </Modal>
       )}
-      <LoadMoreButton onClick={loadMoreAdverts}>Load more</LoadMoreButton>
+
+      {cars.length > 0 ? (
+        <LoadMoreButton onClick={loadMoreAdverts}>Load more</LoadMoreButton>
+      ) : (
+        <NoMoreAdverts>No more adverts have been found!</NoMoreAdverts>
+      )}
     </AdvertsContainer>
   );
 };
