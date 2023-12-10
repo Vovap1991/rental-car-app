@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  FavoritePageCont,
+  FavoritePageTitle,
   AdvertsContainer,
   AdvertsList,
   AdvertsCard,
@@ -21,6 +23,7 @@ import {
   RentalButton,
   ModalContainer,
   CloseModalButton,
+  NoFavoritesCar,
 } from './FavoritesPage.styled.js';
 import normalHeart from '../../normal.svg';
 import closeIcon from '../../close-icon.svg';
@@ -75,150 +78,166 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div>
-      <h1>Your Favorite Adverts</h1>
-      <AdvertsContainer>
-        <AdvertsList>
-          {favoriteCars.map(car => (
-            <AdvertsCard key={car.id}>
-              <FavoriteButton onClick={() => handleFavoriteButtonClick(car)}>
-                <img src={isFavorite(car) ? activeHeart : normalHeart} alt="" />
-              </FavoriteButton>
+    <FavoritePageCont>
+      <FavoritePageTitle>Your Favorite Adverts</FavoritePageTitle>
 
-              <AdvertsImg src={car.img || defaultImg} alt={car.make} />
+      {favoriteCars.length !== 0 ? (
+        <AdvertsContainer>
+          <AdvertsList>
+            {favoriteCars.map(car => (
+              <AdvertsCard key={car.id}>
+                <FavoriteButton onClick={() => handleFavoriteButtonClick(car)}>
+                  <img
+                    src={isFavorite(car) ? activeHeart : normalHeart}
+                    alt=""
+                  />
+                </FavoriteButton>
 
-              <AdvertsFirstInfoBclock>
-                <AdvertsFirstInfoTextContent>
-                  {car.make} <AdvertsModelName>{car.model}</AdvertsModelName>,{' '}
-                  {car.year}
-                </AdvertsFirstInfoTextContent>
-                <span>{car.rentalPrice}</span>
-              </AdvertsFirstInfoBclock>
+                <AdvertsImg src={car.img || defaultImg} alt={car.make} />
 
-              <AdvertsSecondInfoBclock>
-                <AdvertsSecondInfoTextContent>
-                  {car.address.split(',').slice(-2).join(' | ')} |{' '}
-                  {car.rentalCompany}
-                </AdvertsSecondInfoTextContent>
-                <AdvertsSecondInfoTextContent>
-                  {car.type} | {car.model} | {car.id} |{' '}
-                  {car.functionalities[0].split(' ').slice(0, 1).join(' ')}
-                  {car.functionalities[0].split(' ').length > 1 ? '...' : ''}
-                </AdvertsSecondInfoTextContent>
-              </AdvertsSecondInfoBclock>
-              <LearnButton onClick={() => openModal(car)}>
-                Learn more
-              </LearnButton>
-            </AdvertsCard>
-          ))}
-        </AdvertsList>
-        {modalIsOpen && selectedCar && (
-          <Modal
-            isOpen={modalIsOpen}
-            style={customStyles}
-            onRequestClose={closeModal}
-            contentLabel="Example Modal"
-          >
-            <CloseModalButton type="button" onClick={closeModal}>
-              <img src={closeIcon} alt="" />
-            </CloseModalButton>
-            <ModalContainer>
-              <div>
-                <ModalImg
-                  src={selectedCar.img || defaultImg}
-                  alt={selectedCar.make}
-                />
-              </div>
-              <div>
                 <AdvertsFirstInfoBclock>
                   <AdvertsFirstInfoTextContent>
-                    {selectedCar.make}{' '}
-                    <AdvertsModelName>{selectedCar.model}</AdvertsModelName>,{' '}
-                    {selectedCar.year}
+                    {car.make} <AdvertsModelName>{car.model}</AdvertsModelName>,{' '}
+                    {car.year}
                   </AdvertsFirstInfoTextContent>
+                  <span>{car.rentalPrice}</span>
                 </AdvertsFirstInfoBclock>
 
-                <AdvertsSecondInfoTextContent>
-                  {selectedCar.address.split(',').slice(-2).join(' | ')} | Id:{' '}
-                  {selectedCar.id} | Year: {selectedCar.year} | Type:{' '}
-                  {selectedCar.type}
-                  <FuelAndEnginePar>
-                    Fuel Consumption: {selectedCar.fuelConsumption} | Engine
-                    Size: {selectedCar.engineSize}
-                  </FuelAndEnginePar>
-                </AdvertsSecondInfoTextContent>
-
+                <AdvertsSecondInfoBclock>
+                  <AdvertsSecondInfoTextContent>
+                    {car.address.split(',').slice(-2).join(' | ')} |{' '}
+                    {car.rentalCompany}
+                  </AdvertsSecondInfoTextContent>
+                  <AdvertsSecondInfoTextContent>
+                    {car.type} | {car.model} | {car.id} |{' '}
+                    {car.functionalities[0].split(' ').slice(0, 1).join(' ')}
+                    {car.functionalities[0].split(' ').length > 1 ? '...' : ''}
+                  </AdvertsSecondInfoTextContent>
+                </AdvertsSecondInfoBclock>
+                <LearnButton onClick={() => openModal(car)}>
+                  Learn more
+                </LearnButton>
+              </AdvertsCard>
+            ))}
+          </AdvertsList>
+          {modalIsOpen && selectedCar && (
+            <Modal
+              isOpen={modalIsOpen}
+              style={customStyles}
+              onRequestClose={closeModal}
+              contentLabel="Example Modal"
+            >
+              <CloseModalButton type="button" onClick={closeModal}>
+                <img src={closeIcon} alt="" />
+              </CloseModalButton>
+              <ModalContainer>
                 <div>
-                  <CarDescription>{selectedCar.description}</CarDescription>
+                  <ModalImg
+                    src={selectedCar.img || defaultImg}
+                    alt={selectedCar.make}
+                  />
                 </div>
-
                 <div>
-                  <BlockTitle>Accessories and functionalities:</BlockTitle>
-                  <div>
-                    {selectedCar.accessories.map((acc, index) => (
-                      <AccAndFuncText key={index}>
-                        {acc}{' '}
-                        {index !== selectedCar.accessories.length - 1 && '| '}
-                      </AccAndFuncText>
-                    ))}
-                  </div>
-                  <div>
-                    {selectedCar.functionalities.map((fun, index) => (
-                      <AccAndFuncText key={index}>
-                        {fun}{' '}
-                        {index !== selectedCar.functionalities.length - 1 &&
-                          '| '}
-                      </AccAndFuncText>
-                    ))}
-                  </div>
-                </div>
+                  <AdvertsFirstInfoBclock>
+                    <AdvertsFirstInfoTextContent>
+                      {selectedCar.make}{' '}
+                      <AdvertsModelName>{selectedCar.model}</AdvertsModelName>,{' '}
+                      {selectedCar.year}
+                    </AdvertsFirstInfoTextContent>
+                  </AdvertsFirstInfoBclock>
 
-                <div>
-                  <BlockTitle>Rental Conditions:</BlockTitle>
-                  <RentalCondList>
-                    {selectedCar.rentalConditions
-                      .split('\n')
-                      .map((line, index) => (
-                        <RentalCondListItem key={index}>
-                          {line.split(/\b(\d+)\b/).map((part, partIndex) =>
-                            isNaN(part) ? (
-                              <span key={partIndex}>{part}</span>
-                            ) : (
-                              <span
-                                key={partIndex}
-                                style={{ color: '#3470FF', fontWeight: '600' }}
-                              >
-                                {'\u00A0'}
-                                {part}
-                              </span>
-                            )
-                          )}
-                        </RentalCondListItem>
+                  <AdvertsSecondInfoTextContent>
+                    {selectedCar.address.split(',').slice(-2).join(' | ')} | Id:{' '}
+                    {selectedCar.id} | Year: {selectedCar.year} | Type:{' '}
+                    {selectedCar.type}
+                    <FuelAndEnginePar>
+                      Fuel Consumption: {selectedCar.fuelConsumption} | Engine
+                      Size: {selectedCar.engineSize}
+                    </FuelAndEnginePar>
+                  </AdvertsSecondInfoTextContent>
+
+                  <div>
+                    <CarDescription>{selectedCar.description}</CarDescription>
+                  </div>
+
+                  <div>
+                    <BlockTitle>Accessories and functionalities:</BlockTitle>
+                    <div>
+                      {selectedCar.accessories.map((acc, index) => (
+                        <AccAndFuncText key={index}>
+                          {acc}{' '}
+                          {index !== selectedCar.accessories.length - 1 && '| '}
+                        </AccAndFuncText>
                       ))}
-                    <RentalCondListItem>
-                      Mileage:{'\u00A0'}
-                      <span style={{ color: '#3470FF', fontWeight: '600' }}>
-                        {selectedCar.mileage}
-                      </span>
-                    </RentalCondListItem>
-                    <RentalCondListItem>
-                      Price:{'\u00A0'}
-                      <span style={{ color: '#3470FF', fontWeight: '600' }}>
-                        {selectedCar.rentalPrice}
-                      </span>
-                    </RentalCondListItem>
-                  </RentalCondList>
-                </div>
-              </div>
-            </ModalContainer>
+                    </div>
+                    <div>
+                      {selectedCar.functionalities.map((fun, index) => (
+                        <AccAndFuncText key={index}>
+                          {fun}{' '}
+                          {index !== selectedCar.functionalities.length - 1 &&
+                            '| '}
+                        </AccAndFuncText>
+                      ))}
+                    </div>
+                  </div>
 
-            <RentalButton href={'tel:$+380730000000'} className="rental-button">
-              Rental car
-            </RentalButton>
-          </Modal>
-        )}
-      </AdvertsContainer>
-    </div>
+                  <div>
+                    <BlockTitle>Rental Conditions:</BlockTitle>
+                    <RentalCondList>
+                      {selectedCar.rentalConditions
+                        .split('\n')
+                        .map((line, index) => (
+                          <RentalCondListItem key={index}>
+                            {line.split(/\b(\d+)\b/).map((part, partIndex) =>
+                              isNaN(part) ? (
+                                <span key={partIndex}>{part}</span>
+                              ) : (
+                                <span
+                                  key={partIndex}
+                                  style={{
+                                    color: '#3470FF',
+                                    fontWeight: '600',
+                                  }}
+                                >
+                                  {'\u00A0'}
+                                  {part}
+                                </span>
+                              )
+                            )}
+                          </RentalCondListItem>
+                        ))}
+                      <RentalCondListItem>
+                        Mileage:{'\u00A0'}
+                        <span style={{ color: '#3470FF', fontWeight: '600' }}>
+                          {selectedCar.mileage}
+                        </span>
+                      </RentalCondListItem>
+                      <RentalCondListItem>
+                        Price:{'\u00A0'}
+                        <span style={{ color: '#3470FF', fontWeight: '600' }}>
+                          {selectedCar.rentalPrice}
+                        </span>
+                      </RentalCondListItem>
+                    </RentalCondList>
+                  </div>
+                </div>
+              </ModalContainer>
+
+              <RentalButton
+                href={'tel:$+380730000000'}
+                className="rental-button"
+              >
+                Rental car
+              </RentalButton>
+            </Modal>
+          )}
+        </AdvertsContainer>
+      ) : (
+        <NoFavoritesCar>
+          You haven't added any adverts to favourites yet!
+        </NoFavoritesCar>
+      )}
+    </FavoritePageCont>
   );
 };
 

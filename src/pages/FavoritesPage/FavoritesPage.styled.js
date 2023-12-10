@@ -1,5 +1,24 @@
 import styled from 'styled-components';
 
+export const FavoritePageCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const FavoritePageTitle = styled.h1`
+  display: block;
+  margin: 0 auto;
+  color: #121417;
+  font-family: Manrope;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 24px;
+  margin-bottom: 8px;
+`;
+
 export const ModalContainer = styled.div`
   position: relative;
   max-width: 100%;
@@ -249,4 +268,18 @@ export const CloseModalButton = styled.button`
   outline: none;
   width: 24px;
   height: 24px;
+`;
+
+export const NoFavoritesCar = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  color: #121417;
+  font-family: Manrope;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 24px;
+  margin-bottom: 8px;
 `;
