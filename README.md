@@ -16,6 +16,11 @@ cars. Users can easily find and rent a car using the user-friendly interface.
 ## Technologies
 
 - React.js for the frontend.
-- Redux Toolkit for simplifying Redux usage.
+- Redux Toolkit for simplifying Redux usage as a State Manager.
 - Axios for making HTTP requests.
 - Styled Components for styling components.
+
+## Developer
+
+All tasks and design have been acomplished by Fullstack developer Volodymyr
+Panchenko.
