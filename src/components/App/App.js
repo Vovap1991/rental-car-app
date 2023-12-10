@@ -1,6 +1,6 @@
 import { Header } from 'components/Header/Header';
 import CatalogPage from 'pages/CatalogPage/CatalogPage';
-import FavoritesPage from 'pages/FavoritesPage';
+import FavoritesPage from 'pages/FavoritesPage/FavoritesPage';
 import HomePage from 'pages/HomePage';
 import { Route, Routes } from 'react-router-dom';
 
